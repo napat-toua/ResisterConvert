@@ -1,5 +1,6 @@
 package com.example.r_converter;
 
+
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -208,11 +209,11 @@ class myViewHolder extends RecyclerView.ViewHolder{
             adapter.notifyItemRemoved(getAdapterPosition());
         });
 
-
     }
 
     public myViewHolder linkAdaptor(MyRecycleAdapter adapter){
         this.adapter = adapter;
         return this;
     }
+
 }

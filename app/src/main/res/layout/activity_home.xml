@@ -209,18 +209,18 @@
                     android:textColor="#FFFFFF" />
 
                 <FrameLayout
+                    android:id="@+id/go_list_frame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button">
+                    android:background="@drawable/button"
+                    android:visibility="invisible">
                     <Button
                         android:id="@+id/go_list_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="favorite list"
                         android:background="@android:color/transparent"
-                        android:textColor="#005AA7"
-                        android:enabled="false"
-                        />
+                        android:textColor="#005AA7"/>
                 </FrameLayout>
             </LinearLayout>
         </LinearLayout>

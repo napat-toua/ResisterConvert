@@ -7,17 +7,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.DecimalFormat;
 
 
 public class HomeActivity extends AppCompatActivity {
     Button calBtn, addBtn, goFavBtn;
-    FrameLayout band1, band2, band3, band4;
+    FrameLayout band1, band2, band3, band4, goFavFrame;
     TextView result;
     Spinner spin1, spin2, spin3, spin4;
 
@@ -39,6 +42,7 @@ public class HomeActivity extends AppCompatActivity {
         band2 = findViewById(R.id.frame2ndBand);
         band3 = findViewById(R.id.frame3rdBand);
         band4 = findViewById(R.id.frame4thBand);
+        goFavFrame = findViewById(R.id.go_list_frame);
 
         spin1 = findViewById(R.id.spinner1stBand);
         spin2 = findViewById(R.id.spinner2ndBand);
@@ -49,6 +53,8 @@ public class HomeActivity extends AppCompatActivity {
         band2.setBackgroundColor(getResources().getColor(R.color.myBlack));
         band3.setBackgroundColor(getResources().getColor(R.color.myBlack));
         band4.setBackgroundColor(getResources().getColor(R.color.myBrown));
+
+        getSupportActionBar().setTitle("HOME");
 
         final SharedPreferences sp = this.getSharedPreferences("share_data", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sp.edit();
@@ -67,6 +73,9 @@ public class HomeActivity extends AppCompatActivity {
                 calResult = Double.parseDouble(band1txt + band2txt) * band3value;
 
                 result.setText(convertSuffix(calResult) + "Ω ±" + getTolerance(band4txt, band4) + "%");
+
+                Log.d(this.getClass().getName(), sp.getString("list", "Black:Black:White:Gold"));
+                Log.d(this.getClass().getName(), items);
             }
         });
 
@@ -84,13 +93,15 @@ public class HomeActivity extends AppCompatActivity {
                     items = items + "," + item;
                 }
 
-                goFavBtn.setEnabled(true);
+                goFavFrame.setVisibility(View.VISIBLE);
+                Toast.makeText(getApplicationContext(), item + " has been added to the list.", Toast.LENGTH_SHORT).show();
             }
         });
 
         goFavBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 editor.putString("list", items);
                 editor.commit();
 
@@ -98,6 +109,17 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        final SharedPreferences sp = this.getSharedPreferences("share_data", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sp.edit();
+
+        items = sp.getString("list", "Black:Black:White:Gold");
+
     }
     public String getBandValue(String bandV, FrameLayout bandColor){
         switch(bandV) {

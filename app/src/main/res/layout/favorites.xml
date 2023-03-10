@@ -14,32 +14,33 @@
         android:orientation="horizontal">
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="60dp"
             android:orientation="horizontal"
-            android:background="#ebedd5">
+            android:background="#ebedd5"
+            android:layout_gravity="center_vertical"
+            android:padding="5dp">
             <FrameLayout
                 android:id="@+id/frame1stBand"
                 android:layout_width="5dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="1dp"/>
+                android:layout_marginRight="5dp"/>
 
             <FrameLayout
                 android:id="@+id/frame2ndBand"
                 android:layout_width="5dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="1dp"/>
+                android:layout_marginRight="5dp"/>
 
             <FrameLayout
                 android:id="@+id/frame3rdBand"
                 android:layout_width="5dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="1dp"/>
+                android:layout_marginRight="5dp"/>
 
             <FrameLayout
                 android:id="@+id/frame4thBand"
                 android:layout_width="5dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="1dp"/>
+                android:layout_height="match_parent"/>
         </LinearLayout>
         <TextView
             android:id="@+id/text"
